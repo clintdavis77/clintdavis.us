@@ -1,0 +1,5 @@
+.mobile-gallery { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:1.5rem; padding:0 7.5vw 7rem; background:#17201f; }
+.mobile-gallery figure { margin:0; padding:2rem 1rem 1rem; text-align:center; color:#f4f1e9; }
+.mobile-gallery img { width:100%; max-width:360px; margin:0 auto; box-shadow:0 16px 34px rgba(0,0,0,.35); }
+.mobile-gallery figcaption { margin-top:1rem; font:500 .7rem "DM Mono", monospace; letter-spacing:.08em; text-transform:uppercase; color:#c5cdc9; }
+@media (max-width:760px) { .mobile-gallery { grid-template-columns:1fr; padding:0 6vw 5rem; } }
