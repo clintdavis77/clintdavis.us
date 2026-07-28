@@ -21,4 +21,3 @@ GitHub will serve the site from the root of the repository after deployment comp
 - Add future case studies to `work/` and link them from `index.html`.
 - Add articles to `writing/` and add a row in the Writing section of `index.html`.
 - Replace or add approved screenshots in `assets/images/`.
-- Replace `assets/docs/Clint-Davis-Resume.pdf` whenever the résumé changes.
