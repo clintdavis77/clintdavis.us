@@ -1,0 +1,212 @@
+/* ------------------------------------------------------------------
+   Components added during the Hugo migration (2026-10).
+   Same design tokens as site.css; no new colours or fonts.
+   ------------------------------------------------------------------ */
+
+.section-paths {
+  background: var(--paper);
+}
+
+.path-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.path-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2.5rem;
+  min-height: 300px;
+  padding: 2.2rem;
+  border: 1px solid var(--ink);
+  background: var(--cream);
+  transition: transform .2s, background-color .2s;
+}
+
+.path-card:hover,
+.path-card:focus-visible {
+  background: var(--acid);
+  transform: translate(-2px, -2px);
+}
+
+.path-card h3 {
+  margin: .9rem 0 .9rem;
+  font: 500 clamp(1.9rem, 3vw, 2.9rem)/.96 var(--serif);
+  letter-spacing: -.045em;
+}
+
+.path-card p {
+  margin: 0;
+  max-width: 420px;
+  color: #3f4b49;
+}
+
+.path-card .text-link {
+  margin-top: auto;
+}
+
+/* Portfolio page intro paragraph */
+.hero-note {
+  max-width: 620px;
+  margin-top: 1.6rem;
+  font-size: 1.05rem;
+  color: #46514f;
+}
+
+.hero-note p {
+  margin: 0;
+}
+
+/* Blog index rows */
+.article-sub {
+  margin: .45rem 0 0;
+  max-width: 520px;
+  font-size: .92rem;
+  color: #53605d;
+}
+
+.article-row .article-title {
+  margin: 0;
+}
+
+.more-link {
+  margin: 2.2rem 0 0;
+}
+
+/* Blog post body */
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.4rem;
+  margin-top: 1.8rem;
+  color: var(--soft);
+  font: 400 .74rem var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.article-content h3 {
+  margin: 2.4rem 0 .9rem;
+  font: 500 1.45rem/1.15 var(--serif);
+  letter-spacing: -.03em;
+}
+
+.article-content ul,
+.article-content ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.2rem;
+}
+
+.article-content li {
+  margin-bottom: .5rem;
+}
+
+.article-content blockquote {
+  margin: 2.2rem 0;
+  padding: 1.3rem 0 1.3rem 1.4rem;
+  border-left: 2px solid #667d15;
+  font: 500 1.3rem/1.35 var(--serif);
+  color: #3f4b49;
+}
+
+.article-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.article-content figure {
+  margin: 2.4rem 0;
+}
+
+.article-content img {
+  border: 1px solid var(--line);
+}
+
+.article-content figcaption {
+  margin-top: .6rem;
+  color: var(--soft);
+  font-size: .78rem;
+}
+
+.article-content pre {
+  margin: 1.8rem 0;
+  padding: 1.1rem 1.2rem;
+  overflow-x: auto;
+  background: var(--ink);
+  color: #e9e2d4;
+  font: 400 .82rem/1.65 var(--mono);
+}
+
+.article-content code {
+  font-family: var(--mono);
+  font-size: .9em;
+}
+
+.article-content :not(pre) > code {
+  padding: .12em .36em;
+  background: rgba(23, 32, 31, .08);
+}
+
+.article-content hr {
+  margin: 3rem 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+/* Video embeds (YouTube frontmatter or {{< youtube >}}) */
+.video-embed {
+  position: relative;
+  margin: 2.6rem 0;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  background: var(--ink);
+}
+
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.post-nav,
+.case-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 4rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+}
+
+.case-nav {
+  margin-top: 0;
+  padding: 2.4rem 7.5vw 4rem;
+}
+
+@media (max-width: 760px) {
+  .path-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .path-card {
+    min-height: 240px;
+    padding: 1.6rem;
+  }
+
+  .post-nav,
+  .case-nav {
+    flex-direction: column;
+    gap: .8rem;
+  }
+
+  .case-nav {
+    padding: 2rem 6vw 3rem;
+  }
+
+  .article-content pre {
+    font-size: .76rem;
+  }
+}

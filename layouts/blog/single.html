@@ -1,0 +1,25 @@
+{{ define "main" }}
+<article class="article-page">
+  <p class="eyebrow">{{ with .Params.kicker }}{{ . }}{{ else }}Writing{{ end }}</p>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  <div class="post-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+    <span>{{ .ReadingTime }} min read</span>
+    {{ with .Params.tags }}<span>{{ delimit . " · " }}</span>{{ end }}
+  </div>
+
+  {{ with .Params.youtube }}
+  <div class="video-embed">
+    <iframe src="https://www.youtube-nocookie.com/embed/{{ . }}" title="{{ $.Title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  {{ end }}
+
+  <div class="article-content">{{ .Content }}</div>
+
+  <nav class="post-nav" aria-label="Post navigation">
+    {{ with .PrevInSection }}{{ if .Date.Before $.Date }}<a class="text-link" href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}{{ end }}
+    {{ with .NextInSection }}<a class="text-link" href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}
+  </nav>
+</article>
+{{ end }}

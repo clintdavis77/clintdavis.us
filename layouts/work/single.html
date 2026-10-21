@@ -1,0 +1,33 @@
+{{ define "main" }}
+<section class="case-study-hero">
+  <p class="eyebrow">{{ .Params.eyebrow }}</p>
+  <div>
+    <h1>{{ with .Params.heading }}{{ . | safeHTML }}{{ else }}{{ .Title }}{{ end }}</h1>
+    {{ with .Params.meta }}
+    <div class="case-meta">{{ range . }}<span>{{ . }}</span>{{ end }}</div>
+    {{ end }}
+  </div>
+</section>
+
+{{ with .Params.intro }}
+<div class="case-intro">{{ range . }}<p>{{ . }}</p>{{ end }}</div>
+{{ end }}
+
+{{ with .Params.gallery }}
+<section class="mobile-gallery" aria-label="{{ $.Params.galleryLabel | default "Product screenshots" }}">
+  {{ range . }}
+  <figure>
+    <img src="{{ .src | relURL }}" width="{{ .width }}" height="{{ .height }}" loading="lazy" decoding="async" alt="{{ .alt }}" />
+    {{ with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+  </figure>
+  {{ end }}
+</section>
+{{ end }}
+
+{{ .Content }}
+
+<nav class="case-nav" aria-label="Case study navigation">
+  <a class="text-link" href="{{ "/work/" | relURL }}">← All work</a>
+  {{ with .NextInSection }}<a class="text-link" href="{{ .RelPermalink }}">Next: {{ .Title }} <span>→</span></a>{{ end }}
+</nav>
+{{ end }}

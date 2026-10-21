@@ -1,0 +1,27 @@
+baseURL = "https://clintdavis.us/"
+title = "Clint Davis"
+locale = "en-us"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[pagination]
+  pagerSize = 20
+
+[params]
+  description = "Clint Davis is a senior full-stack software engineer who builds reliable software for complex, real-world work."
+  author = "Clint Davis"
+  email = "clint@clintdavis.us"
+  github = "https://github.com/clintdavis77"
+  ogImage = "/images/og-default.png"
+  favicon = "/favicon.svg"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.goldmark.parser]
+  autoHeadingID = true
+
+[markup.highlight]
+  noClasses = false
+  style = "monokai"

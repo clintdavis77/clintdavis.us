@@ -1,0 +1,8 @@
+{{- $src := .Get "src" -}}
+{{- $w := .Get "width" | default "1200" -}}
+{{- $h := .Get "height" | default "800" -}}
+{{- $loading := .Get "loading" | default "lazy" -}}
+<figure class="case-image">
+  <img src="{{ $src }}" width="{{ $w }}" height="{{ $h }}" loading="{{ $loading }}" decoding="async" alt="{{ .Get "alt" }}" />
+  {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>
