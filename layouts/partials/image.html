@@ -1,0 +1,47 @@
+{{- /* Responsive images.
+  Resolves a path under assets/ (a leading "/" is fine) and emits a <picture> with WebP
+  srcset plus an original-format fallback. Falls back to a plain <img> for remote URLs or
+  files that are not in assets/.
+
+  partial "image.html" (dict
+    "src" "images/foo.jpg" "alt" "..." "width" 960 "height" 598
+    "sizes" "(min-width: 900px) 780px, 92vw"
+    "widths" (slice 480 768 1080 1440)
+    "loading" "lazy" "class" "case-shot")
+*/ -}}
+{{- $src := strings.TrimPrefix "/" .src -}}
+{{- $res := resources.Get $src -}}
+{{- $alt := .alt | default "" -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $class := .class -}}
+{{- $w := .width -}}
+{{- $h := .height -}}
+
+{{- if $res -}}
+  {{- $widths := .widths | default (slice 480 768 1080 1440) -}}
+  {{- $sizes := .sizes | default "100vw" -}}
+  {{- $webp := slice -}}
+  {{- $orig := slice -}}
+  {{- range $widths -}}
+    {{- if le . $res.Width -}}
+      {{- $wbp := $res.Resize (printf "%dx webp q80" .) -}}
+      {{- $webp = $webp | append (printf "%s %dw" $wbp.RelPermalink .) -}}
+      {{- $r := $res.Resize (printf "%dx" .) -}}
+      {{- $orig = $orig | append (printf "%s %dw" $r.RelPermalink .) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $webp -}}
+    {{- $webp = $webp | append (printf "%s %dw" ($res.Resize (printf "%dx webp q80" $res.Width)).RelPermalink $res.Width) -}}
+    {{- $orig = $orig | append (printf "%s %dw" $res.RelPermalink $res.Width) -}}
+  {{- end -}}
+  {{- $fallback := index (last 1 $orig) 0 -}}
+  <picture>
+    <source type="image/webp" srcset="{{ delimit $webp ", " }}" sizes="{{ $sizes }}" />
+    <img src="{{ $res.RelPermalink }}" srcset="{{ delimit $orig ", " }}" sizes="{{ $sizes }}"
+         {{ with $w }}width="{{ . }}" {{ end }}{{ with $h }}height="{{ . }}" {{ end }}loading="{{ $loading }}" decoding="async"
+         {{ with $class }}class="{{ . }}" {{ end }}alt="{{ $alt }}" />
+  </picture>
+{{- else -}}
+  <img src="{{ .src }}" {{ with $w }}width="{{ . }}" {{ end }}{{ with $h }}height="{{ . }}" {{ end }}
+       loading="{{ $loading }}" decoding="async" {{ with $class }}class="{{ . }}" {{ end }}alt="{{ $alt }}" />
+{{- end -}}

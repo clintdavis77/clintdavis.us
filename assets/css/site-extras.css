@@ -210,3 +210,234 @@
     font-size: .76rem;
   }
 }
+
+/* ------------------------------------------------------------------
+   Search, tags, table of contents, responsive images (2026-10).
+   Same tokens; no new colours or fonts.
+   ------------------------------------------------------------------ */
+
+/* <picture> wrappers must not disturb the art-directed <img> rules */
+.case-image picture,
+.project-image picture {
+  display: block;
+  height: 100%;
+}
+
+.mobile-gallery picture {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* width/height attributes are intrinsic sizes; let CSS drive the height so a
+   wide figure or a tall phone shot keeps its aspect ratio instead of stretching */
+.case-image img,
+.mobile-gallery img,
+.article-content img {
+  height: auto;
+}
+
+/* Editorial two-column grid for search and tag indexes (same 1fr / 2.5fr as sections) */
+.search-grid,
+.tag-grid {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  gap: 5vw;
+  align-items: start;
+  margin-bottom: 2.4rem;
+}
+
+.tag-grid {
+  margin-bottom: 0;
+}
+
+.search-box {
+  max-width: 820px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: .5rem 0 1rem;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 500 clamp(1.45rem, 3vw, 2.25rem)/1.2 var(--serif);
+  letter-spacing: -.03em;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.search-box input::placeholder {
+  color: #98a19d;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-bottom-color: #5c7800;
+  box-shadow: 0 1px 0 0 #5c7800;
+}
+
+.search-box input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.search-status {
+  min-height: 1.2em;
+  margin: 1.1rem 0 2.4rem;
+  font: 500 .72rem var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+/* Tag chips */
+.tag-browse {
+  margin-top: 3.4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.tag-browse .eyebrow {
+  margin-bottom: 1.1rem;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+}
+
+.tag-cloud-large {
+  gap: .7rem;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .5rem;
+  padding: .5rem .7rem;
+  border: 1px solid var(--line);
+  font: 500 .72rem var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: background-color .2s, border-color .2s;
+}
+
+.tag-chip span {
+  font-size: .64rem;
+  color: var(--soft);
+}
+
+.tag-chip:hover,
+.tag-chip:focus-visible {
+  background: var(--acid);
+  border-color: var(--ink);
+}
+
+/* Inline tags under a post title */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .45rem;
+  margin: 1rem 0 0;
+}
+
+.tag-link {
+  font: 500 .72rem var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: #5c7800;
+  border-bottom: 1px solid transparent;
+}
+
+.tag-link:hover,
+.tag-link:focus-visible {
+  border-bottom-color: currentColor;
+}
+
+.tag-sep {
+  color: var(--soft);
+}
+
+/* Table of contents */
+.post-toc {
+  max-width: 680px;
+  margin-top: 2.6rem;
+  padding: 1.4rem 0 1.5rem;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+
+.post-toc .eyebrow {
+  margin-bottom: .9rem;
+}
+
+.post-toc nav#TableOfContents ul {
+  display: grid;
+  gap: .45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-toc nav#TableOfContents ul ul {
+  gap: .35rem;
+  margin-top: .45rem;
+  padding-left: 1.1rem;
+}
+
+.post-toc a {
+  font: 500 1.02rem/1.3 var(--serif);
+  letter-spacing: -.01em;
+}
+
+.post-toc a:hover,
+.post-toc a:focus-visible {
+  color: #5c7800;
+  text-decoration: underline;
+  text-underline-offset: .25em;
+}
+
+.post-toc + .article-content {
+  margin-top: 2.8rem;
+}
+
+@media (max-width: 760px) {
+  .search-grid,
+  .tag-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .search-box input {
+    font-size: 1.35rem;
+  }
+
+  .post-toc {
+    margin-top: 2rem;
+  }
+}
+
+/* Short pages (tag indexes, empty blog) should still put the footer at the bottom */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* A page that is a single section: let that section fill the leftover height so the
+   background reaches the footer instead of ending in a stray band of paper */
+main > .section:only-child {
+  flex: 1 0 auto;
+}

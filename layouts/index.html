@@ -62,7 +62,9 @@
 <section id="about" class="section about-section">
   <div class="about-identity">
     <p class="eyebrow">About Clint</p>
-    <img class="profile-photo" src="{{ "/images/clint-davis.jpg" | relURL }}" width="400" height="400" loading="lazy" decoding="async" alt="Clint Davis" />
+    {{ partial "image.html" (dict
+        "src" "/images/clint-davis.jpg" "alt" "Clint Davis" "width" 440 "height" 440
+        "class" "profile-photo" "sizes" "220px" "widths" (slice 220 440)) }}
     <p class="location">{{ .Params.location }}<br />{{ .Params.availability }}</p>
   </div>
   <div class="about-copy">

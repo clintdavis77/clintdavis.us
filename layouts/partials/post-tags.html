@@ -1,0 +1,9 @@
+{{- /* Tag links + a browse-by-tag block, shared by post meta, the blog list, and tag pages. */ -}}
+{{- with .Params.tags -}}
+<p class="post-tags">
+  {{- range $i, $t := . -}}
+    {{- if $i }}<span class="tag-sep" aria-hidden="true">·</span>{{ end -}}
+    <a class="tag-link" href="{{ printf "/tags/%s/" ($t | urlize) | relURL }}">{{ $t }}</a>
+  {{- end -}}
+</p>
+{{- end -}}

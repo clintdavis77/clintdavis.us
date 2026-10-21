@@ -1,0 +1,28 @@
+{{ define "main" }}
+<section class="section writing-section search-page">
+  <div class="section-heading writing-heading">
+    <p class="eyebrow">Search</p>
+    <h2>{{ .Params.heading | default "Find something." }}</h2>
+    {{ with .Params.lede }}<p>{{ . }}</p>{{ end }}
+  </div>
+
+  <div class="search-grid">
+    <label class="eyebrow" for="search-input">Search the site</label>
+    <div class="search-box">
+      <input id="search-input" type="search" autocomplete="off" spellcheck="false"
+             placeholder="Architecture, .NET MAUI, Azure Service Bus…"
+             data-index="{{ "index.json" | relURL }}" />
+      <p class="search-status" id="search-status" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div class="article-list" id="search-results"></div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+{{ $fuse := resources.Get "js/fuse.min.js" | minify | fingerprint }}
+{{ $search := resources.Get "js/search.js" | minify | fingerprint }}
+<script src="{{ $fuse.RelPermalink }}" defer></script>
+<script src="{{ $search.RelPermalink }}" defer></script>
+{{ end }}

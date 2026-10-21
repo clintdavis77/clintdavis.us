@@ -1,0 +1,20 @@
+{{ define "main" }}
+<section class="section writing-section">
+  <div class="section-heading writing-heading">
+    <p class="eyebrow">Tags</p>
+    <h2>Browse by topic.</h2>
+    {{ with .Content }}<p>{{ . }}</p>{{ end }}
+  </div>
+
+  <div class="tag-grid">
+    <p class="eyebrow">{{ len .Data.Terms }} topics</p>
+    <div class="tag-cloud tag-cloud-large">
+      {{ range .Data.Terms.ByCount }}
+      <a class="tag-chip" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}<span>{{ .Count }}</span></a>
+      {{ else }}
+      <p class="article-sub">No tags yet. Tags appear here as work and writing are published.</p>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

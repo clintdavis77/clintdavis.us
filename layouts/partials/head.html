@@ -4,13 +4,21 @@
 {{- if .IsHome }}{{ $title = printf "%s — Software Engineer" site.Title }}{{ end -}}
 {{- if eq .Kind "404" }}{{ $title = printf "Page not found — %s" site.Title }}{{ end -}}
 {{- $og := site.Params.ogImage | absURL -}}
-{{- with .Params.image }}{{ $og = . | absURL }}{{ end -}}
+{{- if .Params.image -}}
+  {{- $og = .Params.image | absURL -}}
+{{- else if .File -}}
+  {{- $card := printf "static/images/og/%s.png" .File.ContentBaseName -}}
+  {{- if fileExists $card -}}{{ $og = printf "/images/og/%s.png" .File.ContentBaseName | absURL }}{{- end -}}
+{{- end -}}
 {{- $isPost := and .IsPage (eq .Section "blog") -}}
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $desc }}" />
 <meta name="author" content="{{ site.Params.author }}" />
+{{- with .Params.robots }}
+<meta name="robots" content="{{ . }}" />
+{{- end }}
 <meta name="theme-color" content="#f4f1e9" />
 <link rel="canonical" href="{{ .Permalink }}" />
 <link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="{{ site.Title }}" />

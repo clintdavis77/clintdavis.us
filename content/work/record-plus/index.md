@@ -8,6 +8,11 @@ meta:
   - ASP.NET · Blazor · JavaScript
   - 2025–present
 weight: 30
+tags:
+  - Healthcare
+  - Blazor
+  - ASP.NET
+  - AI
 aliases:
   - /work/record-plus.html
 intro:

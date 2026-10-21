@@ -1,0 +1,9 @@
+{{- /* Table of contents: shown when a post has at least two headings.
+       Call this after rendering .Content, otherwise .TableOfContents is empty. */ -}}
+{{- $items := len (findRE "<li>" .TableOfContents) -}}
+{{- if ge $items 2 -}}
+<aside class="post-toc" aria-labelledby="toc-label">
+  <p class="eyebrow" id="toc-label">Contents</p>
+  {{ .TableOfContents }}
+</aside>
+{{- end -}}

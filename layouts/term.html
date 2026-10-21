@@ -1,0 +1,26 @@
+{{ define "main" }}
+<section class="section writing-section">
+  <div class="section-heading writing-heading">
+    <p class="eyebrow">Tag</p>
+    <h2>{{ .Title }}</h2>
+    <p>{{ len .Pages }} {{ if eq (len .Pages) 1 }}piece{{ else }}pieces{{ end }} tagged “{{ .Title }}”.</p>
+  </div>
+
+  {{ if .Pages }}
+  <div class="article-list">
+    {{ range .Pages }}
+    <a class="article-row" href="{{ .RelPermalink }}">
+      <p class="article-type">{{ if eq .Section "work" }}Case study{{ else }}{{ .Date.Format "Jan 2, 2006" }}{{ end }}</p>
+      <div>
+        <h3 class="article-title">{{ .Title }}</h3>
+        {{ with .Description }}<p class="article-sub">{{ . }}</p>{{ end }}
+      </div>
+      <span class="article-arrow">→</span>
+    </a>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <p class="more-link"><a class="text-link" href="{{ "/tags/" | relURL }}">All tags <span>→</span></a></p>
+</section>
+{{ end }}
