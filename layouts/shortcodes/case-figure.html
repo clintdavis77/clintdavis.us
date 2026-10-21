@@ -3,6 +3,9 @@
 {{- $h := .Get "height" | default "800" -}}
 {{- $loading := .Get "loading" | default "lazy" -}}
 <figure class="case-image">
-  <img src="{{ $src }}" width="{{ $w }}" height="{{ $h }}" loading="{{ $loading }}" decoding="async" alt="{{ .Get "alt" }}" />
+  {{ partial "image.html" (dict
+      "src" $src "alt" (.Get "alt") "width" $w "height" $h "loading" $loading
+      "sizes" "(min-width: 1000px) 780px, 92vw"
+      "widths" (slice 480 720 960 1200 1600)) }}
   {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>

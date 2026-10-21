@@ -6,6 +6,7 @@
     {{ with .Params.meta }}
     <div class="case-meta">{{ range . }}<span>{{ . }}</span>{{ end }}</div>
     {{ end }}
+    {{ partial "post-tags.html" . }}
   </div>
 </section>
 
@@ -17,7 +18,10 @@
 <section class="mobile-gallery" aria-label="{{ $.Params.galleryLabel | default "Product screenshots" }}">
   {{ range . }}
   <figure>
-    <img src="{{ .src | relURL }}" width="{{ .width }}" height="{{ .height }}" loading="lazy" decoding="async" alt="{{ .alt }}" />
+    {{ partial "image.html" (dict
+        "src" .src "alt" .alt "width" .width "height" .height
+        "sizes" "(min-width: 900px) 330px, 82vw"
+        "widths" (slice 360 540 720)) }}
     {{ with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
   </figure>
   {{ end }}

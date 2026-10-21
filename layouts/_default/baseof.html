@@ -12,5 +12,6 @@
     {{ partial "footer.html" . }}
     {{ $js := resources.Get "js/site.js" | minify | fingerprint }}
     <script src="{{ $js.RelPermalink }}" defer></script>
+    {{ block "scripts" . }}{{ end }}
   </body>
 </html>

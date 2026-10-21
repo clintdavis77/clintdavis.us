@@ -8,6 +8,12 @@ meta:
   - .NET MAUI · iOS · Android
   - 2023–2025
 weight: 20
+tags:
+  - .NET MAUI
+  - Mobile
+  - iOS
+  - Android
+  - Higher education
 aliases:
   - /work/meal-plan-mobile.html
 extraCSS:

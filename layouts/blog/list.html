@@ -25,5 +25,14 @@
     <p>Thoughtful essays, build notes, and practical lessons from the work.</p>
   </div>
   {{ end }}
+
+  {{ with site.Taxonomies.tags }}
+  <div class="tag-browse">
+    <p class="eyebrow">Browse by topic</p>
+    <div class="tag-cloud">
+      {{ range .ByCount }}<a class="tag-chip" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}<span>{{ .Count }}</span></a>{{ end }}
+    </div>
+  </div>
+  {{ end }}
 </section>
 {{ end }}

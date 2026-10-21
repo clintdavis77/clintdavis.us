@@ -6,8 +6,8 @@
   <div class="post-meta">
     <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
     <span>{{ .ReadingTime }} min read</span>
-    {{ with .Params.tags }}<span>{{ delimit . " · " }}</span>{{ end }}
   </div>
+  {{ partial "post-tags.html" . }}
 
   {{ with .Params.youtube }}
   <div class="video-embed">
@@ -15,7 +15,10 @@
   </div>
   {{ end }}
 
-  <div class="article-content">{{ .Content }}</div>
+  {{ $content := .Content }}
+  {{ partial "toc.html" . }}
+
+  <div class="article-content">{{ $content }}</div>
 
   <nav class="post-nav" aria-label="Post navigation">
     {{ with .PrevInSection }}{{ if .Date.Before $.Date }}<a class="text-link" href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}{{ end }}

@@ -3,7 +3,13 @@ title = "Clint Davis"
 locale = "en-us"
 defaultContentLanguage = "en"
 enableRobotsTXT = true
-disableKinds = ["taxonomy", "term"]
+
+[taxonomies]
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
 
 [pagination]
   pagerSize = 20
@@ -21,6 +27,11 @@ disableKinds = ["taxonomy", "term"]
 
 [markup.goldmark.parser]
   autoHeadingID = true
+
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3
+  ordered = false
 
 [markup.highlight]
   noClasses = false

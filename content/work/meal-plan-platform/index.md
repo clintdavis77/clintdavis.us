@@ -8,6 +8,12 @@ meta:
   - ASP.NET MVC · Azure Service Bus
   - 2016–2025
 weight: 10
+tags:
+  - .NET
+  - ASP.NET MVC
+  - Azure
+  - Integration
+  - Higher education
 aliases:
   - /work/meal-plan-platform.html
 intro:

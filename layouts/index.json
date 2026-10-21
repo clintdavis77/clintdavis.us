@@ -1,0 +1,15 @@
+{{- $pages := where site.RegularPages "Section" "in" (slice "blog" "work") -}}
+[
+{{- range $i, $p := $pages }}
+  {{- if $i }},{{ end }}
+  {
+    "title": {{ $p.Title | jsonify }},
+    "permalink": {{ $p.RelPermalink | jsonify }},
+    "section": {{ $p.Section | jsonify }},
+    "date": {{ if $p.Date.IsZero }}""{{ else }}{{ $p.Date.Format "2006-01-02" | jsonify }}{{ end }},
+    "summary": {{ ($p.Description | default ($p.Summary | plainify | truncate 180)) | jsonify }},
+    "tags": {{ $p.Params.tags | default (slice) | jsonify }},
+    "content": {{ $p.Plain | truncate 3000 | jsonify }}
+  }
+{{- end }}
+]

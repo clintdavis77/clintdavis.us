@@ -17,7 +17,11 @@
   {{ with index $pages 0 }}
   <article class="project project-featured">
     <a class="project-image image-frame" href="{{ .RelPermalink }}" aria-label="Read the {{ .Title }} case study">
-      <img src="{{ .Params.cardImage | relURL }}" width="{{ .Params.cardWidth }}" height="{{ .Params.cardHeight }}" decoding="async" alt="{{ .Params.cardAlt }}" />
+      {{ partial "image.html" (dict
+          "src" .Params.cardImage "alt" .Params.cardAlt
+          "width" .Params.cardWidth "height" .Params.cardHeight
+          "sizes" "(min-width: 1000px) 52vw, 92vw"
+          "widths" (slice 480 720 960 1200)) }}
     </a>
     <div class="project-copy">
       <p class="project-number">{{ .Params.eyebrow }}</p>
